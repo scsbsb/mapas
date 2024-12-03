@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapas Mentais</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        /* Menu lateral */
+        #menu {
+            width: 250px; /* Largura do menu */
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translateX(-100%); /* Inicialmente fora da tela */
+            transition: transform 0.3s ease;
+            overflow-y: auto; /* Permite rolagem vertical se o conteúdo for maior que a altura da tela */
+        }
+
+        #menu.open {
+            transform: translateX(0); /* Menu aparece ao clicar */
+        }
+
+        #menu ul {
+            list-style: none;
+        }
+        #menu ul li {
+            margin: 10px 0;
+        }
+        #menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #menu ul li a:hover {
+            color: #ffcc00;
+        }
+        #menu ul li a.active {
+        color: #ffcc00; /* Cor amarela */
+        }
+        .submenu {
+            display: none;
+            margin-left: 20px;
+        }
+        .submenu a {
+            font-size: 16px;
+        }
+        #content {
+            flex: 1;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+        #welcome-message {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        #map-title {
+            font-size: 24px;
+            text-align: left;
+        }
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            #hamburger {
+                display: block;
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                z-index: 20;
+                cursor: pointer;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                color: white;
+                font-size: 18px;
+                opacity: 0.7; /* Opacidade de 50% */
+            }
+
+            #content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botão Hambúrguer -->
+    <div id="hamburger" onclick="toggleMenu()">☰</div>
+
+    <!-- Menu lateral -->
+    <div id="menu">
+        <h2>MAPAS MENTAIS</h2>
+        <ul id="menu-links">
+            <!-- Banco de Dados -->
+            <li><a href="#" onclick="loadMainPage('Banco de Dados', 'bd.html'); toggleSubmenu('bd')">Banco de Dados</a>
+                <ul class="submenu" id="bd-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Formas Normais', 'Banco de Dados', 'bd_formas_normais.html')">Formas Normais</a></li>
+                    <li><a href="#" onclick="loadSubmenu('SQL', 'Banco de Dados', 'bd_sql.html')">SQL</a></li>
+                </ul>
+            </li>
+
+            <!-- Ciência de Dados -->
+            <li><a href="#" onclick="loadMainPage('Ciência de Dados', 'cd.html'); toggleSubmenu('cd')">Ciência de Dados</a>
+                <ul class="submenu" id="cd-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Algoritmos de Ciência de Dados', 'Ciência de Dados', 'cd_algoritmos.html')">Algoritmos de Ciência de Dados</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Bibliotecas de Python', 'Ciência de Dados', 'cd_libs_python.html')">Bibliotecas de Python</a></li>
+                </ul>
+            </li>
+
+            <!-- Desenvolvimento de Sistemas -->
+            <li><a href="#" onclick="loadMainPage('Desenvolvimento de Sistemas', 'ds.html'); toggleSubmenu('ds')">Desenvolvimento de Sistemas</a>
+                <ul class="submenu" id="ds-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Devops', 'Desenvolvimento de Sistemas', 'ds_devops.html')">Devops</a></li>
+                    <li><a href="#" onclick="loadSubmenu('DevSecOps', 'Desenvolvimento de Sistemas', 'ds_devsecops.html')">DevSecOps</a></li>
+                </ul>
+            </li>
+
+            <!-- Engenharia de Software -->
+            <li><a href="#" onclick="loadMainPage('Engenharia de Software', 'es.html'); toggleSubmenu('es')">Engenharia de Software</a>
+                <ul class="submenu" id="es-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Scrum', 'Engenharia de Software', 'es_scrum.html')">Scrum</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Padrões de Projeto GOF', 'Engenharia de Software', 'es_gof.html')">Padrões de Projeto GOF</a></li>
+                </ul>
+            </li>
+
+            <!-- Gestão e Governança -->
+            <li><a href="#" onclick="loadMainPage('Gestão e Governança', 'gg.html'); toggleSubmenu('gg')">Gestão e Governaça</a>
+                <ul class="submenu" id="gg-submenu">
+                    <li><a href="#" onclick="loadSubmenu('ITIL V4', 'Gestão e Governança', 'gg_itil_v4.html')">ITIL v4</a></li>
+                    <li><a href="#" onclick="loadSubmenu('COBIT 2019', 'Gestão e Governança', 'gg_cobit.html')">COBIT 2019</a></li>
+                </ul>
+            </li>
+
+             <!-- Organização e Arquitetura de Computadores -->
+             <li><a href="#" onclick="loadMainPage('Organização e Arquitetura de Computadores', 'oac.html'); toggleSubmenu('oac')">Organização e Arquitetura de Computadores</a>
+                <ul class="submenu" id="oac-submenu">
+                    <li><a href="#" onclick="loadSubmenu('RAID', 'Organização e Arquitetura de Computadores', 'oac_raid.html')">RAID</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Componentes do CPU', 'Organização e Arquitetura de Computadores', 'oac_cpu.html')">Componentes do CPU</a></li>
+                </ul>
+            </li>
+
+            <!-- Redes de Computadores -->
+            <li><a href="#" onclick="loadMainPage('Redes de Computadores', 'rc.html'); toggleSubmenu('rc')">Redes de Computadores</a>
+                <ul class="submenu" id="rc-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Modelo OSI e TCP/IP', 'Redes de Computadores', 'rc_osi_tcpip.html')">Modelo OSI e TCP/IP</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Cloud Computing', 'Redes de Computadores', 'rc_cloud.html')">Cloud Computing</a></li>
+                </ul>
+            </li>
+
+            <!-- Segurança da Informação -->
+            <li><a href="#" onclick="loadMainPage('Segurança da Informação', 'si.html'); toggleSubmenu('seguranca')">Segurança da Informação</a>
+                <ul class="submenu" id="seguranca-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Tipos de Ataque', 'Segurança da Informação', 'si_ataques.html')">Tipos de Ataque</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Família ISO 27000', 'Segurança da Informação', 'si_familia_iso_27000.html')">Família ISO 27000</a></li>
+                </ul>
+            </li>
+
+            <!-- Sistemas Operacionais -->
+            <li><a href="#" onclick="loadMainPage('Sistemas Operacionais', 'so.html'); toggleSubmenu('so')">Sistemas Operacionais</a>
+                <ul class="submenu" id="so-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Containeres', 'Sistemas Operacionais', 'so_containeres.html')">Containeres</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Gerenciamento de Memória', 'Sistemas Operacionais', 'so_gerenciamento_memoria.html')">Gerenciamento de Memória</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo -->
+    <div id="content">
+        <div id="welcome-message">
+            <!--Olá, <span id="username"></span>! Seja bem-vindo!-->
+             <h4> Clique no Menu e escolha um Mapa Mental! </h4>
+        </div>
+        <div id="map-title"></div>
+        <iframe id="content-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        // Abre o menu quando a página carregar no desktop
+    window.onload = function() {
+        if (window.innerWidth >= 768) {  // Verifica se é um desktop
+            document.getElementById("menu").classList.add("open");
+            document.getElementById("content").style.marginLeft = "250px"; // Ajusta o conteúdo
+        }
+        }
+        // Função para exibir o submenu, garantindo que só um esteja aberto por vez
+        function toggleSubmenu(menu) {
+            // Fechar todos os submenus
+            var allSubmenus = document.querySelectorAll('.submenu');
+            allSubmenus.forEach(function(submenu) {
+                submenu.style.display = "none";
+            });
+
+            // Mostrar o submenu do item clicado
+            var submenu = document.getElementById(menu + "-submenu");
+            if (submenu.style.display !== "block") {
+                submenu.style.display = "block";
+            }
+        }
+
+        // Função para carregar o conteúdo principal
+        function loadMainPage(title, url) {
+            document.getElementById("map-title").innerText = title;
+            document.getElementById("content-iframe").src = url;
+            document.getElementById("welcome-message").style.display = "none"; // Esconde a mensagem
+
+            // Remove a classe 'active' de todos os links
+            var links = document.querySelectorAll('#menu ul li a');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+
+            // Adiciona a classe 'active' ao link clicado
+            var clickedLink = event.target;
+            clickedLink.classList.add('active');
+        }
+
+        function loadSubmenu(title, category, url) {
+            document.getElementById("map-title").innerText = title;
+            document.getElementById("content-iframe").src = url;
+            document.getElementById("welcome-message").style.display = "none"; // Esconde a mensagem
+
+            // Remove a classe 'active' de todos os links
+            var links = document.querySelectorAll('#menu ul li a');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+
+            // Adiciona a classe 'active' ao link clicado
+            var clickedLink = event.target;
+            clickedLink.classList.add('active');
+        }
+
+
+        // Função para alternar o menu no mobile
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            var hamburger = document.getElementById("hamburger");
+
+            // Verifica se o menu está aberto ou fechado
+            if (menu.classList.contains("open")) {
+                // Fecha o menu
+                menu.classList.remove("open");
+                menu.style.transform = "translateX(-100%)"; // Menu sai da tela
+                document.getElementById("content").style.marginLeft = "0"; // Conteúdo ocupa toda a tela
+            } else {
+                // Abre o menu
+                menu.classList.add("open");
+                menu.style.transform = "translateX(0)"; // Menu aparece
+                document.getElementById("content").style.marginLeft = "250px"; // Conteúdo se ajusta
+            }
+        }
+        // Função para carregar o conteúdo principal
+        function loadMainPage(title, url) {
+            document.getElementById("map-title").innerText = title;
+            document.getElementById("content-iframe").src = url;
+            document.getElementById("welcome-message").style.display = "none"; // Esconde a mensagem
+        }
+
+        // Função para carregar o conteúdo do submenu
+        function loadSubmenu(title, category, url) {
+            document.getElementById("map-title").innerText = title;
+            document.getElementById("content-iframe").src = url;
+            document.getElementById("welcome-message").style.display = "none"; // Esconde a mensagem
+        }
+
+    </script>
+</body>
+</html>
