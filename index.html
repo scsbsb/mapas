@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapas Mentais de TI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        /* Menu lateral */
+        #menu {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            transition: all 0.3s ease;
+        }
+        #menu ul {
+            list-style: none;
+        }
+        #menu ul li {
+            margin: 10px 0;
+        }
+        #menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #menu ul li a:hover {
+            color: #ffcc00;
+        }
+        /* Submenu oculto inicialmente */
+        .submenu {
+            display: none;
+            margin-left: 20px;
+        }
+        .submenu a {
+            font-size: 16px;
+        }
+        /* Área de conteúdo */
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+            background-color: #fff;
+        }
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+        #welcome-message {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        #map-title {
+            font-size: 24px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu lateral -->
+    <div id="menu">
+        <h2>MAPAS MENTAIS</h2>
+        <ul id="menu-links">
+            <!-- Banco de Dados -->
+            <li><a href="#" onclick="loadMainPage('Banco de Dados', 'bd.html'); toggleSubmenu('bd')">Banco de Dados</a>
+                <ul class="submenu" id="bd-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Formas Normais', 'Banco de Dados', 'cd.html')">Formas Normais</a></li>
+                    <li><a href="#" onclick="loadSubmenu('SQL Avançado', 'Banco de Dados', 'bd_sql.html')">SQL Avançado</a></li>
+                </ul>
+            </li>
+
+            <!-- Ciência de Dados -->
+            <li><a href="#" onclick="loadMainPage('Ciência de Dados', 'cd.html'); toggleSubmenu('cd')">Ciência de Dados</a>
+                <ul class="submenu" id="cd-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Introdução', 'Ciência de Dados', 'cd_intro.html')">Introdução</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Análise de Dados', 'Ciência de Dados', 'cd_analise.html')">Análise de Dados</a></li>
+                </ul>
+            </li>
+
+            <!-- Desenvolvimento de Sistemas -->
+            <li><a href="#" onclick="loadMainPage('Desenvolvimento de Sistemas', 'ds.html'); toggleSubmenu('ds')">Desenvolvimento de Sistemas</a>
+                <ul class="submenu" id="ds-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Introdução', 'Desenvolvimento de Sistemas', 'ds_intro.html')">Introdução</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Análise de Dados', 'Desenvolvimento de Sistemas', 'ds_analise.html')">Análise de Dados</a></li>
+                </ul>
+            </li>
+
+            <!-- Engenharia de Software -->
+            <li><a href="#" onclick="loadMainPage('Engenharia de Software', 'es.html'); toggleSubmenu('es')">Engenharia de Software</a>
+                <ul class="submenu" id="es-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Metodologias', 'Engenharia de Software', 'metodologias.html')">Metodologias</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Arquitetura de Software', 'Engenharia de Software', 'arquitetura.html')">Arquitetura de Software</a></li>
+                </ul>
+            </li>
+
+            <!-- Gestão e Governança -->
+            <li><a href="#" onclick="loadMainPage('Gestão e Governança', 'gg.html'); toggleSubmenu('gg')">Gestão e Governaça</a>
+                <ul class="submenu" id="gg-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Metodologias', 'Gestão e Governança', 'metodologias.html')">Metodologias</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Arquitetura de Software', 'Gestão e Governança', 'arquitetura.html')">Arquitetura de Software</a></li>
+                </ul>
+            </li>
+
+             <!-- Organização e Arquitetura de Computadores -->
+             <li><a href="#" onclick="loadMainPage('Organização e Arquitetura de Computadores', 'oac.html'); toggleSubmenu('oac')">Organização e Arquitetura de Computadores</a>
+                <ul class="submenu" id="oac-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Protocólos TCP/IP', 'Organização e Arquitetura de Computadores', 'tcpip.html')">Protocólos TCP/IP</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Topologias de Rede', 'Organização e Arquitetura de Computadores', 'topologia.html')">Topologias de Rede</a></li>
+                </ul>
+            </li>
+
+            <!-- Redes de Computadores -->
+            <li><a href="#" onclick="loadMainPage('Redes de Computadores', 'rc.html'); toggleSubmenu('rc')">Redes de Computadores</a>
+                <ul class="submenu" id="rc-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Protocólos TCP/IP', 'Redes de Computadores', 'tcpip.html')">Protocólos TCP/IP</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Topologias de Rede', 'Redes de Computadores', 'topologia.html')">Topologias de Rede</a></li>
+                </ul>
+            </li>
+
+            <!-- Segurança da Informação -->
+            <li><a href="#" onclick="loadMainPage('Segurança da Informação', 'si.html'); toggleSubmenu('seguranca')">Segurança da Informação</a>
+                <ul class="submenu" id="seguranca-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Criptografia', 'Segurança da Informação', 'criptografia.html')">Criptografia</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Segurança em Redes', 'Segurança da Informação', 'seguranca_redes.html')">Segurança em Redes</a></li>
+                </ul>
+            </li>
+
+            <!-- Sistemas Operacionais -->
+            <li><a href="#" onclick="loadMainPage('Sistemas Operacionais', 'so.html'); toggleSubmenu('so')">Sistemas Operacionais</a>
+                <ul class="submenu" id="so-submenu">
+                    <li><a href="#" onclick="loadSubmenu('Gerenciamento de Processos', 'Sistemas Operacionais', 'gerenciamento.html')">Gerenciamento de Processos</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Gerenciamento de Memória', 'Sistemas Operacionais', 'memoria.html')">Gerenciamento de Memória</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Área de conteúdo -->
+    <div id="content">
+        <div id="welcome-message">
+            <p id="map-title">Selecione um mapa mental a ser carregado aqui.</p>
+        </div>
+        <!-- O conteúdo dos mapas mentais será carregado aqui -->
+        <iframe id="map-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        function loadMainPage(title, page) {
+            // Carrega a página principal da disciplina no iframe
+            document.getElementById('map-iframe').src = page;
+            document.getElementById('map-title').textContent = "Mapa Mental: " + title;
+        }
+
+        function loadSubmenu(submenuTitle, discipline, page) {
+            // Carrega o conteúdo do submenu no iframe
+            document.getElementById('map-iframe').src = page;
+            document.getElementById('map-title').textContent = "Submenu: " + submenuTitle + " - " + discipline;
+        }
+
+        function toggleSubmenu(discipline) {
+            // Fecha todos os submenus
+            const allSubmenus = document.querySelectorAll('.submenu');
+            allSubmenus.forEach(submenu => submenu.style.display = 'none');
+            // Abre o submenu correspondente à disciplina
+            const submenu = document.getElementById(discipline + '-submenu');
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
