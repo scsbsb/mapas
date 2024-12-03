@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mapas Mentais de TI</title>
+    <title>Mapas Mentais</title>
     <style>
         * {
             margin: 0;
@@ -90,64 +90,64 @@
             <!-- Ciência de Dados -->
             <li><a href="#" onclick="loadMainPage('Ciência de Dados', 'cd.html'); toggleSubmenu('cd')">Ciência de Dados</a>
                 <ul class="submenu" id="cd-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Algoritimos de Ciência de Dados', 'Ciência de Dados', 'cd_algoritmos.html')">Algoritimos de Ciência de Dados</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Análise de Dados', 'Ciência de Dados', 'cd_analise.html')">Análise de Dados</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Algoritmos de Ciência de Dados', 'Ciência de Dados', 'cd_algoritmos.html')">Algoritmos de Ciência de Dados</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Bibliotecas de Python', 'Ciência de Dados', 'cd_libs_python.html')">Bibliotecas de Python</a></li>
                 </ul>
             </li>
 
             <!-- Desenvolvimento de Sistemas -->
             <li><a href="#" onclick="loadMainPage('Desenvolvimento de Sistemas', 'ds.html'); toggleSubmenu('ds')">Desenvolvimento de Sistemas</a>
                 <ul class="submenu" id="ds-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Introdução', 'Desenvolvimento de Sistemas', 'ds_intro.html')">Introdução</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Análise de Dados', 'Desenvolvimento de Sistemas', 'ds_analise.html')">Análise de Dados</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Devops', 'Desenvolvimento de Sistemas', 'ds_devops.html')">Devops</a></li>
+                    <li><a href="#" onclick="loadSubmenu('DevSecOps', 'Desenvolvimento de Sistemas', 'ds_devsecops.html')">DevSecOps</a></li>
                 </ul>
             </li>
 
             <!-- Engenharia de Software -->
             <li><a href="#" onclick="loadMainPage('Engenharia de Software', 'es.html'); toggleSubmenu('es')">Engenharia de Software</a>
                 <ul class="submenu" id="es-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Metodologias', 'Engenharia de Software', 'metodologias.html')">Metodologias</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Arquitetura de Software', 'Engenharia de Software', 'arquitetura.html')">Arquitetura de Software</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Scrum', 'Engenharia de Software', 'es_scrum.html')">Scrum</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Padrões de Projeto GOF', 'Engenharia de Software', 'es_gof.html')">Padrões de Projeto GOF</a></li>
                 </ul>
             </li>
 
             <!-- Gestão e Governança -->
             <li><a href="#" onclick="loadMainPage('Gestão e Governança', 'gg.html'); toggleSubmenu('gg')">Gestão e Governaça</a>
                 <ul class="submenu" id="gg-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Metodologias', 'Gestão e Governança', 'metodologias.html')">Metodologias</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Arquitetura de Software', 'Gestão e Governança', 'arquitetura.html')">Arquitetura de Software</a></li>
+                    <li><a href="#" onclick="loadSubmenu('ITIL V4', 'Gestão e Governança', 'gg_itil_v4.html')">ITIL v4</a></li>
+                    <li><a href="#" onclick="loadSubmenu('COBIT 2019', 'Gestão e Governança', 'gg_cobit.html')">COBIT 2019</a></li>
                 </ul>
             </li>
 
              <!-- Organização e Arquitetura de Computadores -->
              <li><a href="#" onclick="loadMainPage('Organização e Arquitetura de Computadores', 'oac.html'); toggleSubmenu('oac')">Organização e Arquitetura de Computadores</a>
                 <ul class="submenu" id="oac-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Protocólos TCP/IP', 'Organização e Arquitetura de Computadores', 'tcpip.html')">Protocólos TCP/IP</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Topologias de Rede', 'Organização e Arquitetura de Computadores', 'topologia.html')">Topologias de Rede</a></li>
+                    <li><a href="#" onclick="loadSubmenu('RAID', 'Organização e Arquitetura de Computadores', 'oac_raid.html')">RAID</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Componentes do CPU', 'Organização e Arquitetura de Computadores', 'oac_cpu.html')">Componentes do CPU</a></li>
                 </ul>
             </li>
 
             <!-- Redes de Computadores -->
             <li><a href="#" onclick="loadMainPage('Redes de Computadores', 'rc.html'); toggleSubmenu('rc')">Redes de Computadores</a>
                 <ul class="submenu" id="rc-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Protocólos TCP/IP', 'Redes de Computadores', 'tcpip.html')">Protocólos TCP/IP</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Topologias de Rede', 'Redes de Computadores', 'topologia.html')">Topologias de Rede</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Modelo OSI e TCP/IP', 'Redes de Computadores', 'rc_osi_tcpip.html')">Modelo OSI e TCP/IP</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Cloud Computing', 'Redes de Computadores', 'rc_cloud.html')">Cloud Computing</a></li>
                 </ul>
             </li>
 
             <!-- Segurança da Informação -->
             <li><a href="#" onclick="loadMainPage('Segurança da Informação', 'si.html'); toggleSubmenu('seguranca')">Segurança da Informação</a>
                 <ul class="submenu" id="seguranca-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Criptografia', 'Segurança da Informação', 'criptografia.html')">Criptografia</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Segurança em Redes', 'Segurança da Informação', 'seguranca_redes.html')">Segurança em Redes</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Tipos de Ataque', 'Segurança da Informação', 'si_ataques.html')">Tipos de Ataque</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Família ISO 27000', 'Segurança da Informação', 'si_familia_iso_27000.html')">Família ISO 27000</a></li>
                 </ul>
             </li>
 
             <!-- Sistemas Operacionais -->
             <li><a href="#" onclick="loadMainPage('Sistemas Operacionais', 'so.html'); toggleSubmenu('so')">Sistemas Operacionais</a>
                 <ul class="submenu" id="so-submenu">
-                    <li><a href="#" onclick="loadSubmenu('Gerenciamento de Processos', 'Sistemas Operacionais', 'gerenciamento.html')">Gerenciamento de Processos</a></li>
-                    <li><a href="#" onclick="loadSubmenu('Gerenciamento de Memória', 'Sistemas Operacionais', 'memoria.html')">Gerenciamento de Memória</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Containeres', 'Sistemas Operacionais', 'so_containeres.html')">Containeres</a></li>
+                    <li><a href="#" onclick="loadSubmenu('Gerenciamento de Memória', 'Sistemas Operacionais', 'so_gerenciamento_memoria.html')">Gerenciamento de Memória</a></li>
                 </ul>
             </li>
         </ul>
@@ -156,7 +156,7 @@
     <!-- Área de conteúdo -->
     <div id="content">
         <div id="welcome-message">
-            <p id="map-title">Selecione um mapa mental a ser carregado aqui.</p>
+            <p id="map-title">Selecione um mapa mental no Menu ao lado.</p>
         </div>
         <!-- O conteúdo dos mapas mentais será carregado aqui -->
         <iframe id="map-iframe" src=""></iframe>
